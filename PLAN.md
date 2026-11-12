@@ -1,7 +1,7 @@
 # Local Student AI Workspace — Consolidated Plan & Research
 
 **Repository**: https://github.com/XtraordinaryProxy/local-student-ai-workspace  
-**Last Updated**: November 2026  
+**Last Updated**: November 12, 2026  
 **Status**: Research & Design Document (for sharing with other AI tools and collaborators)
 
 ---
@@ -174,6 +174,104 @@ Domain polish (code-aware features, image organization, specialized templates) +
 5. Add the chat/RAG interface with citations.
 6. Add RAM detection and model recommendation/download flow.
 
-This document consolidates all research and ideas from the design sessions and is intended to be shared with other AI tools, collaborators, or future implementation agents.
+---
+
+## 10. Leveling Up the Student Workspace — High-Value Convenient Features
+
+Research into current offline/local student tools (NotebookLM-style apps, Anki + FSRS, local RAG projects) shows the highest-value additions turn passive materials into **active learning** with almost zero extra effort.
+
+### Highest-Impact Additions
+1. **One-Click Active Learning Suite**  
+   From any selected folder, PDF, or notes: generate flashcards (with optional local FSRS/SM-2 scheduling), quizzes/practice exams, one-page study guides, and ELI5 explanations.  
+   *Value*: Active recall + spaced repetition delivers the biggest retention gains.  
+   *Convenience*: Single button → reviewable materials ready in seconds. Optional Anki (.apkg) export.
+
+2. **Mastery & Progress Tracking**  
+   Simple levels (Recognize → Understand → Recall → Apply), due-today review queue, weak-area highlighting, and basic streaks. All data stays local.
+
+3. **Frictionless Project / Course Mode**  
+   Drop files into a course folder → automatic indexing → instant summary, key concepts, flashcards, quiz, and chat. Visual “what’s due / what’s weak” panel.
+
+4. **Socratic / Tutor Mode**  
+   Grounded answers that can switch to hint mode or ask questions first. Always cites exact file/section. Optional understanding checks.
+
+5. **Quick Capture Enhancements**  
+   Drag-and-drop or paste → smart folder + naming suggestions. Related materials suggestions. One-click “create study set from this selection.”
+
+6. **Lightweight Focus Helpers**  
+   Simple Pomodoro tied to a course, “review due cards” dashboard widget, daily study brief from local data.
+
+**Design principles**: Zero-to-study in under a minute. Everything grounded with citations. Progressive (start with organizer + Ask Your Files, then generation tools, then spaced repetition). Hardware-aware (works on 8GB; stronger on 16GB).
+
+**Recommended priority**:
+1. One-click flashcards + quizzes + study guides
+2. Source-cited chat + summaries
+3. Local spaced-repetition review queue
+4. Project/course mode with weak-area highlighting
+5. Socratic tutor mode
+6. Light progress dashboard
+
+These turn the tool into a daily study companion that saves time *and* improves retention while remaining fully local.
+
+---
+
+## 11. Medical Professionals — High-Value Seamless Needs
+
+Medical students, residents, and clinicians need tools that handle massive information volume, strict privacy, and unreliable hospital internet. Local-first design is especially valuable because sensitive data never leaves the device.
+
+### Highest-Value Features for Medical Users
+| Need | Feature | Why It Matters |
+|------|---------|----------------|
+| Study & board prep | One-click flashcards, quizzes, study guides from lecture PDFs/slides | Anki + spaced repetition is standard; students want cards from *their* lectures |
+| Quick clarification | Grounded “Ask my materials” + Socratic tutor mode | Explain mechanisms, differentials, or wrong answers without leaving the app |
+| Clinical reference (education) | Local RAG over user-added guidelines, textbooks, or notes | Point-of-care questions during rotations; offline after indexing |
+| Organization | Smart organizer for lectures, cases, research PDFs | Content-based naming and grouping with preview/undo |
+| Privacy-safe drafting | Summarize or structure local notes (never real patient PHI) | Avoid cloud HIPAA risks |
+| Quick reference | Offline calculators (doses, lab values, scoring systems) + model explanations | Common bedside needs, all local |
+| Progress | Mastery tracking per topic/rotation | Knowledge must stick for years |
+
+**Design principles for medical use**:
+- Strict privacy by design with clear UI warnings against uploading real patient PHI.
+- Source-grounded answers only (citations from user files or local documents).
+- Fully usable offline after model download.
+- Fits 8GB–16GB laptops (3–4B models for study tools; stronger models on 16GB).
+- Education-first focus with explicit disclaimers (not a replacement for clinical judgment).
+
+**Realistic high-impact additions**:
+- Medical study mode with optimized templates for Anki-style cards and board-style questions.
+- Easy import and indexing of local guideline/textbook PDFs with strong citation UX.
+- Local structured reference data (doses, lab ranges) that the model can explain.
+- Case study organizer and weak-topic review queue from quiz performance.
+
+---
+
+## 12. HIPAA-Aligned Local AI Models
+
+**Critical point**: No model is inherently “HIPAA-compliant.” Compliance depends on the full system (data handling, access controls, logging, encryption, transmission). Running models **locally** (on-device or on-premises) is one of the cleanest approaches because PHI never leaves the controlled environment, eliminating the need for a BAA with a cloud AI provider for the inference step.
+
+Local inference still requires proper safeguards (access controls, audit logs, encryption, device security, risk assessment). Models can hallucinate; they are tools for study and support, not clinical replacements.
+
+### Practical Local / On-Device Options (2026)
+| Model | Size | Best For | Hardware Fit | Notes |
+|-------|------|----------|--------------|-------|
+| **MedGemma 4B** (Google) | ~4B | Medical text + images | 8–16 GB RAM | Official Ollama support; strong laptop balance |
+| **MedGemma 27B** | 27B | Higher-quality clinical reasoning | 24 GB+ VRAM | Better accuracy; more resource-heavy |
+| **MedPsy 1.7B / 4B** | 1.7–4B | Private medical Q&A | Phone to low-end laptop | Apache 2.0; fully on-device |
+| **Qwen 2.5 / 3 series** | 7–14B | General + medical tasks, de-identification | 8–16 GB | Strong PHI detection in studies |
+| **Llama 3.1 / 3.2** (8B) | 8B | General clinical text, note summarization | 8–16 GB | Widely used baseline |
+
+**Most practical for student/resident laptop workspace**: MedGemma 4B (via Ollama) or strong general 3–7B models + offline RAG.
+
+### Recommended Privacy Architecture
+- Runtime: Ollama (or llama.cpp) fully offline.
+- Data: Local vector store for RAG over personal notes/guidelines.
+- Safeguards: UI warnings against real PHI, optional local de-identification, audit logs, full-disk encryption, device access controls.
+- Usage focus: Personal study materials, de-identified cases, and local guideline PDFs.
+
+This setup provides useful AI assistance for medical education while staying privacy-aligned with HIPAA principles and working in low-connectivity environments.
+
+---
+
+This document consolidates all research and ideas from the design sessions (including student feature leveling, medical professional needs, and HIPAA-aligned local models) and is intended to be shared with other AI tools, collaborators, or future implementation agents.
 
 **End of Plan**
